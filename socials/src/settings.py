@@ -25,14 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
 
-    # Third-party
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # Add social providers you want
+
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
 
