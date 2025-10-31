@@ -1,7 +1,7 @@
 from rest_framework import generics, status, views
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import get_user_model
 from django.conf import settings
 from google.oauth2 import id_token
 from google.auth.transport import requests
@@ -12,13 +12,11 @@ from .serializers import LoginSerializer, UserRegistrationSerializer
 User = get_user_model()
 
 
-# ------------------ Register ------------------
 class RegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserRegistrationSerializer
 
 
-# ------------------ Login ------------------
 class LoginView(views.APIView):
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
@@ -34,7 +32,6 @@ class LoginView(views.APIView):
         }, status=status.HTTP_200_OK)
 
 
-# ------------------ Google Login ------------------
 class GoogleLoginView(views.APIView):
     """
     Accepts a Google ID token from frontend, verifies it,
