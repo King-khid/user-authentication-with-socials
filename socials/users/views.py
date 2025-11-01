@@ -54,7 +54,6 @@ class GoogleLoginView(views.APIView):
             if not email:
                 return Response({'error': 'Email not provided by Google'}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Create or fetch user
             user, created = User.objects.get_or_create(
                 email=email,
                 defaults={'first_name': first_name, 'last_name': last_name}
